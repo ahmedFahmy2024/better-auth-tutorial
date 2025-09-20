@@ -63,13 +63,13 @@ export function SignUpForm() {
   async function onSubmit({ email, password, name }: SignUpValues) {
     setError(null);
 
-    const { error } = await authClient.signUp.email({
+    const { data, error } = await authClient.signUp.email({
       email,
       password,
       name,
       callbackURL: "/email-verified",
     });
-
+    console.log("data", data);
     if (error) {
       setError(error.message || "Something went wrong");
     } else {
